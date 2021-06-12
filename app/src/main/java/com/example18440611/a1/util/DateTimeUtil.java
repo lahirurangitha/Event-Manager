@@ -13,4 +13,30 @@ public class DateTimeUtil {
     public static Date convertToDate(String date) {
         return new Date(date);
     }
+
+    public static String convertToDisplay(Time time) {
+        int hour = time.getHours();
+        int min = time.getMinutes();
+
+        String amOrpm;
+        if (hour == 0) {
+            hour += 12;
+            amOrpm = "AM";
+        } else if (hour == 12) {
+            amOrpm = "PM";
+        } else if (hour > 12) {
+            hour -= 12;
+            amOrpm = "PM";
+        } else {
+            amOrpm = "AM";
+        }
+        return get2CharFormat(hour) + ":" + get2CharFormat(min) + " " + amOrpm;
+    }
+
+    private static String get2CharFormat(int i) {
+        if (i < 10) {
+            return "0" + i;
+        }
+        return "" + i;
+    }
 }

@@ -2,6 +2,7 @@ package com.example18440611.a1.dto;
 
 
 import com.example18440611.a1.util.Checks;
+import com.example18440611.a1.util.DateTimeUtil;
 
 import java.sql.Time;
 import java.util.Date;
@@ -105,9 +106,9 @@ public class Event {
         builder.append(date.toString());
         builder.append("\n");
         builder.append("From ");
-        builder.append(startTime.toString());
+        builder.append(DateTimeUtil.convertToDisplay(startTime));
         builder.append(" To ");
-        builder.append(endTime.toString());
+        builder.append(DateTimeUtil.convertToDisplay(endTime));
 
 
         return builder.toString();
