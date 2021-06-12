@@ -20,6 +20,9 @@ public class DBUtil extends SQLiteOpenHelper {
     private static final String COL_DATE = "date";
     private static final String COL_START_TIME = "startTime";
     private static final String COL_END_TIME = "endTime";
+    private static final String COL_REMINDER_1 = "reminder1";
+    private static final String COL_REMINDER_2 = "reminder2";
+    private static final String COL_REMINDER_3 = "reminder3";
     private static final String COL_ID = "id";
 
     private DBUtil(Context context) {
@@ -39,7 +42,10 @@ public class DBUtil extends SQLiteOpenHelper {
                 "location TEXT NOT NULL, " +
                 "date TEXT NOT NULL, " +
                 "startTime TEXT NOT NULL, " +
-                "endTime TEXT NOT NULL " +
+                "endTime TEXT NOT NULL, " +
+                "reminder1 INTEGER NOT NULL, " +
+                "reminder2 INTEGER NOT NULL, " +
+                "reminder3 INTEGER NOT NULL " +
                 ")");
     }
 
@@ -58,6 +64,9 @@ public class DBUtil extends SQLiteOpenHelper {
         contentValues.put(COL_DATE, DateTimeUtil.convertToDisplay(event.getDate()));
         contentValues.put(COL_START_TIME, event.getStartTime().toString());
         contentValues.put(COL_END_TIME, event.getEndTime().toString());
+        contentValues.put(COL_REMINDER_1, event.getReminder1());
+        contentValues.put(COL_REMINDER_2, event.getReminder2());
+        contentValues.put(COL_REMINDER_3, event.getReminder3());
 
         long result = db.insert("event", null, contentValues);
 
@@ -86,6 +95,9 @@ public class DBUtil extends SQLiteOpenHelper {
                 event.setDate(DateTimeUtil.parse(cursor.getString(cursor.getColumnIndex(COL_DATE))));
                 event.setStartTime(DateTimeUtil.convertToTime(cursor.getString(cursor.getColumnIndex(COL_START_TIME))));
                 event.setEndTime(DateTimeUtil.convertToTime(cursor.getString(cursor.getColumnIndex(COL_END_TIME))));
+                event.setReminder1(cursor.getInt(cursor.getColumnIndex(COL_REMINDER_1)));
+                event.setReminder2(cursor.getInt(cursor.getColumnIndex(COL_REMINDER_2)));
+                event.setReminder3(cursor.getInt(cursor.getColumnIndex(COL_REMINDER_3)));
 
                 events.add((event));
                 cursor.moveToNext();

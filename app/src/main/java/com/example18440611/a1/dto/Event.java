@@ -23,6 +23,9 @@ public class Event {
     private LocalDate date;
     private Time startTime;
     private Time endTime;
+    private int reminder1;
+    private int reminder2;
+    private int reminder3;
 
     public int getId() {
         return id;
@@ -78,6 +81,30 @@ public class Event {
 
     public void setEndTime(Time endTime) {
         this.endTime = endTime;
+    }
+
+    public int getReminder1() {
+        return reminder1;
+    }
+
+    public void setReminder1(int reminder1) {
+        this.reminder1 = reminder1;
+    }
+
+    public int getReminder2() {
+        return reminder2;
+    }
+
+    public void setReminder2(int reminder2) {
+        this.reminder2 = reminder2;
+    }
+
+    public int getReminder3() {
+        return reminder3;
+    }
+
+    public void setReminder3(int reminder3) {
+        this.reminder3 = reminder3;
     }
 
     public boolean isValid() {
