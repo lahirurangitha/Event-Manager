@@ -5,7 +5,7 @@ import com.example18440611.a1.util.Checks;
 import com.example18440611.a1.util.DateTimeUtil;
 
 import java.sql.Time;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Event {
 
@@ -20,7 +20,7 @@ public class Event {
     private String eventName;
     private String description;
     private String location;
-    private Date date;
+    private LocalDate date;
     private Time startTime;
     private Time endTime;
 
@@ -56,11 +56,11 @@ public class Event {
         this.location = location;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

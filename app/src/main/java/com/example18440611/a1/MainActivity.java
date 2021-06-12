@@ -13,8 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example18440611.a1.dto.Event;
-
-import java.util.Date;
+import com.example18440611.a1.util.DateTimeUtil;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         viewEventsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),ViewEventsActivity.class);
+                Intent intent = new Intent(getApplicationContext(), ViewEventsActivity.class);
                 startActivity(intent);
             }
         });
@@ -38,9 +37,8 @@ public class MainActivity extends AppCompatActivity {
         eventDate.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int y, int m, int d) {
-                Date date = new Date(y, m, d);
                 Intent intent = new Intent(getApplicationContext(), FillEventDetailsActivity.class);
-                intent.putExtra(Event.EVENT_DATE, date.toString());
+                intent.putExtra(Event.EVENT_DATE, DateTimeUtil.getFormattedDate(y, m, d));
                 startActivity(intent);
             }
         });

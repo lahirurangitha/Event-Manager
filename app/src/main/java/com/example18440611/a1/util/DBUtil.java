@@ -55,7 +55,7 @@ public class DBUtil extends SQLiteOpenHelper {
         contentValues.put(COL_NAME, event.getEventName());
         contentValues.put(COL_DESCRIPTION, event.getDescription());
         contentValues.put(COL_LOCATION, event.getLocation());
-        contentValues.put(COL_DATE, event.getDate().toString());
+        contentValues.put(COL_DATE, DateTimeUtil.convertToDisplay(event.getDate()));
         contentValues.put(COL_START_TIME, event.getStartTime().toString());
         contentValues.put(COL_END_TIME, event.getEndTime().toString());
 
@@ -83,7 +83,7 @@ public class DBUtil extends SQLiteOpenHelper {
                 event.setEventName(cursor.getString(cursor.getColumnIndex(COL_NAME)));
                 event.setDescription(cursor.getString(cursor.getColumnIndex(COL_DESCRIPTION)));
                 event.setLocation(cursor.getString(cursor.getColumnIndex(COL_LOCATION)));
-                event.setDate(DateTimeUtil.convertToDate(cursor.getString(cursor.getColumnIndex(COL_DATE))));
+                event.setDate(DateTimeUtil.parse(cursor.getString(cursor.getColumnIndex(COL_DATE))));
                 event.setStartTime(DateTimeUtil.convertToTime(cursor.getString(cursor.getColumnIndex(COL_START_TIME))));
                 event.setEndTime(DateTimeUtil.convertToTime(cursor.getString(cursor.getColumnIndex(COL_END_TIME))));
 
