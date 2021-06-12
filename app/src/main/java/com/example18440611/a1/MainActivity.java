@@ -1,16 +1,20 @@
 package com.example18440611.a1;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CalendarView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
+import com.example18440611.a1.dto.Event;
+
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,12 +25,23 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        final Button viewEventsButton = findViewById(R.id.viewEventsButton);
+        viewEventsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(getApplicationContext(),ViewEventsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        final CalendarView eventDate = findViewById(R.id.eventDate);
+        eventDate.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView calendarView, int y, int m, int d) {
+                Date date = new Date(y, m, d);
+                Intent intent = new Intent(getApplicationContext(), FillEventDetailsActivity.class);
+                intent.putExtra(Event.EVENT_DATE, date.toString());
+                startActivity(intent);
             }
         });
     }
