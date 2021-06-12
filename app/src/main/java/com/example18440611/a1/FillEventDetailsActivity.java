@@ -8,12 +8,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example18440611.a1.dto.Event;
 import com.example18440611.a1.util.DBUtil;
+import com.example18440611.a1.util.DateTimeUtil;
 
 import java.sql.Time;
 import java.util.Date;
@@ -52,13 +54,14 @@ public class FillEventDetailsActivity extends AppCompatActivity {
                 event.setDescription(eventDescription.getText().toString());
                 event.setLocation(eventLocation.getText().toString());
 
-                Date eventDate = new Date(getIntent().getStringExtra(Event.EVENT_DATE));
+                Date eventDate = DateTimeUtil.parse(getIntent().getStringExtra(Event.EVENT_DATE));
                 event.setDate(eventDate);
 
                 event.setStartTime(getTime(eventStartTime));
                 event.setEndTime(getTime(eventEndTime));
 
                 if (event.isValid() && dbUtil.createEvent(event)) {
+                    Toast.makeText(FillEventDetailsActivity.this, "Event Added.", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
                 }

@@ -1,9 +1,16 @@
 package com.example18440611.a1.util;
 
 import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class DateTimeUtil {
+
+    private static final String YYYY_MM_DD = "yyyy-MM-dd";
 
     public static Time convertToTime(String str) {
         String[] components = str.split(":");
@@ -38,5 +45,20 @@ public class DateTimeUtil {
             return "0" + i;
         }
         return "" + i;
+    }
+
+    public static String getFormattedDate(int y, int m, int d) {
+        return LocalDate.of(y, m+1, d).format(DateTimeFormatter.ISO_DATE);
+    }
+
+    public static Date parse(String str) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(YYYY_MM_DD);
+
+        try {
+            return simpleDateFormat.parse(str);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
