@@ -23,9 +23,9 @@ public class Event {
     private LocalDate date;
     private Time startTime;
     private Time endTime;
-    private int reminder1;
-    private int reminder2;
-    private int reminder3;
+    private boolean reminder1;
+    private boolean reminder2;
+    private boolean reminder3;
 
     public int getId() {
         return id;
@@ -83,27 +83,27 @@ public class Event {
         this.endTime = endTime;
     }
 
-    public int getReminder1() {
+    public boolean getReminder1() {
         return reminder1;
     }
 
-    public void setReminder1(int reminder1) {
+    public void setReminder1(boolean reminder1) {
         this.reminder1 = reminder1;
     }
 
-    public int getReminder2() {
+    public boolean getReminder2() {
         return reminder2;
     }
 
-    public void setReminder2(int reminder2) {
+    public void setReminder2(boolean reminder2) {
         this.reminder2 = reminder2;
     }
 
-    public int getReminder3() {
+    public boolean getReminder3() {
         return reminder3;
     }
 
-    public void setReminder3(int reminder3) {
+    public void setReminder3(boolean reminder3) {
         this.reminder3 = reminder3;
     }
 
@@ -136,6 +136,15 @@ public class Event {
         builder.append(DateTimeUtil.convertToDisplay(startTime));
         builder.append(" To ");
         builder.append(DateTimeUtil.convertToDisplay(endTime));
+        builder.append("\n");
+        builder.append("Remind before 1 hr : ");
+        builder.append(reminder1 ? "Set" : "Not Set");
+        builder.append("\n");
+        builder.append("Remind before 3 hrs : ");
+        builder.append(reminder2 ? "Set" : "Not Set");
+        builder.append("\n");
+        builder.append("Remind before 6 hrs : ");
+        builder.append(reminder3 ? "Set" : "Not Set");
 
 
         return builder.toString();

@@ -95,9 +95,9 @@ public class DBUtil extends SQLiteOpenHelper {
                 event.setDate(DateTimeUtil.parse(cursor.getString(cursor.getColumnIndex(COL_DATE))));
                 event.setStartTime(DateTimeUtil.convertToTime(cursor.getString(cursor.getColumnIndex(COL_START_TIME))));
                 event.setEndTime(DateTimeUtil.convertToTime(cursor.getString(cursor.getColumnIndex(COL_END_TIME))));
-                event.setReminder1(cursor.getInt(cursor.getColumnIndex(COL_REMINDER_1)));
-                event.setReminder2(cursor.getInt(cursor.getColumnIndex(COL_REMINDER_2)));
-                event.setReminder3(cursor.getInt(cursor.getColumnIndex(COL_REMINDER_3)));
+                event.setReminder1(cursor.getInt(cursor.getColumnIndex(COL_REMINDER_1))==1);
+                event.setReminder2(cursor.getInt(cursor.getColumnIndex(COL_REMINDER_2))==1);
+                event.setReminder3(cursor.getInt(cursor.getColumnIndex(COL_REMINDER_3))==1);
 
                 events.add((event));
                 cursor.moveToNext();

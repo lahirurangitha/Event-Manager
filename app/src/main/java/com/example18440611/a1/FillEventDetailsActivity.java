@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -42,6 +43,9 @@ public class FillEventDetailsActivity extends AppCompatActivity {
         eventLocation = findViewById(R.id.eventLocation);
         eventStartTime = findViewById(R.id.startTime);
         eventEndTime = findViewById(R.id.endTime);
+        final Switch reminder1 = findViewById(R.id.reminder1);
+        final Switch reminder2 = findViewById(R.id.reminder2);
+        final Switch reminder3 = findViewById(R.id.reminder3);
 
         Button saveButton = findViewById(R.id.saveButton);
         saveButton.setOnClickListener(new View.OnClickListener() {
@@ -59,13 +63,21 @@ public class FillEventDetailsActivity extends AppCompatActivity {
 
                 event.setStartTime(getTime(eventStartTime));
                 event.setEndTime(getTime(eventEndTime));
+                event.setReminder1(reminder1.isChecked());
+                event.setReminder2(reminder2.isChecked());
+                event.setReminder3(reminder3.isChecked());
 
-                if (event.isValid() && dbUtil.createEvent(event)) {
-                    Toast.makeText(FillEventDetailsActivity.this, "Event Added.", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(intent);
+                if (event.isValid()) {
+                    if (dbUtil.createEvent(event)) {
+                        Toast.makeText(FillEventDetailsActivity.this, "Event Added.", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(FillEventDetailsActivity.this, "Failed.", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(FillEventDetailsActivity.this, "Fill all the fields.", Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
 

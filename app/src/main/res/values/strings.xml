@@ -13,4 +13,8 @@
     <string name="or">--- OR ---</string>
     <string name="create_event">Choose new event date</string>
     <string name="title_activity_view_events">All events</string>
+    <string name="reminder1">Remind before 1 hr</string>
+    <string name="reminder2">Remind before 3 hrs</string>
+    <string name="reminder3">Remind before 6 hrs</string>
+    <string name="reminders">Reminders</string>
 </resources>

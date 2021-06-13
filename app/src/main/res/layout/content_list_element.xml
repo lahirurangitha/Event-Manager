@@ -3,7 +3,7 @@
     android:id="@+id/label"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:height="120dp"
+    android:height="170dp"
     android:padding="10dp"
     android:textSize="16sp"
     android:textStyle="bold" >
